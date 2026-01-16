@@ -3,7 +3,7 @@
 Slime and Guns è stato sviluppato da un team di 4 persone:
 
 - **Lukas Moro** – Ruolo principale  
-  🔗 GitHub: https://github.com/MoroLukas
+  🔗 GitHub: https://github.com/MoroLukas  
   🔗 Portfolio / Sito: https://lukasmoro.ch
 
 - **Anh Nguyen** – Ruolo principale  
