@@ -68,9 +68,9 @@ Sono previste future implementazioni come:
 
 ## 📄 Licenza
 
-Questo progetto è distribuito sotto licenza **MIT**.  
+Slime and Guns è distribuito sotto **Apache License 2.0**. 
 Sei libero di utilizzare, modificare e distribuire il codice, purché venga mantenuto il riferimento all’autore originale.
-
+Consulta il file [LICENSE](./LICENSE) per il testo completo.
 ---
 
 ## ❤️ Crediti
