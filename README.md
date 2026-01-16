@@ -61,7 +61,7 @@ Sono previste future implementazioni come:
 *(Aggiungi qui immagini o GIF del gameplay)*
 
 ```markdown
-![Gameplay](screenshots/gameplay.png)
+![Gameplay](7_Allegati/gameplay.png)
 ````
 
 ---
