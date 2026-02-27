@@ -974,8 +974,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1261a5e4ec645d4c87b373bacb4b842, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  speed: 5
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  player_left_still: {fileID: 2192332363164228162, guid: d594ef3f2c6b0104eb66ca981f190f5f, type: 3}
+  player_left_walk: {fileID: -5409457797693382528, guid: d9cdb6858ec2bd44496ee9ab605fd886, type: 3}
+  change_sprite_timer: 0
+  speed: 2
+  acceleration: 10
+  deceleration: 5
 --- !u!61 &1533751254
 BoxCollider2D:
   m_ObjectHideFlags: 0
