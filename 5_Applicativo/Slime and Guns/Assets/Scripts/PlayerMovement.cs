@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementInput != Vector2.zero) 
         { 
-            if (change_sprite_timer >= (120 / speed)) {
+            if (change_sprite_timer >= (30 / speed)) {
                 if (spriteRenderer.sprite == player_left_still)
                 {
                     spriteRenderer.sprite = player_left_walk;
@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            change_sprite_timer = 0;
             spriteRenderer.sprite = player_left_still;
         }
 
