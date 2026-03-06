@@ -10,10 +10,10 @@ EditorBuildSettings:
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/main_menu.unity
-    guid: 317b33080ffd4694bb251ecd12189afa
+    guid: a73edad6a370e644282741b5a5c493ed
   - enabled: 1
-    path: Assets/Scenes/TestLukas.unity
-    guid: 988dcc1896dc0e544882a5bfbc6e7e24
+    path: Assets/Scenes/Test_Alex.unity
+    guid: fb82ee5b411522842bc0721d4bda89fc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
