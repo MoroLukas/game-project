@@ -8,7 +8,7 @@ public class SlimeScript : MonoBehaviour
     public Sprite slime_right_walk;
     private SpriteRenderer spriteRenderer;
 
-    public float speed = 5f;
+    public float speed = 2f;
     public Transform player;
     public float attackDelay = 1f; // secondi
 
