@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 public class Bullet_Movement : MonoBehaviour
 {
     Rigidbody2D rb;
+    public GameObject ColorPrefab;
 
     public float posX;
     public float posY;
+    private bool isPlaced = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,18 +18,31 @@ public class Bullet_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        mousePos.z = 0;
+        if (!isPlaced)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            mousePos.z = 0;
 
-        Vector3 direction = mousePos - transform.position;
+            Vector3 direction = mousePos - transform.position;
 
 
-        posX = direction.x;
-        posY = direction.y;
+            posX = direction.x;
+            posY = direction.y;
 
-        rb.linearVelocity = new Vector2 (posX, posY).normalized * 5f;
+            rb.linearVelocity = new Vector2(posX, posY).normalized * 5f;
 
-        Destroy(gameObject, 4f);
+            Destroy(gameObject, 1f);
+
+            isPlaced = true;
+        }
     }
+
+    private void OnDestroy()
+    {
+        Vector3 posisioning  = transform.position;
+        Instantiate(ColorPrefab, posisioning, Quaternion.identity);
+    }
+
+
 }
 
