@@ -205,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 119874573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.283, y: 1.845, z: 0}
+  m_LocalPosition: {x: 0.283, y: 1.84, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 590708802}
   - component: {fileID: 590708804}
   - component: {fileID: 590708805}
+  - component: {fileID: 590708806}
   m_Layer: 0
   m_Name: slime_left_still_0
   m_TagString: Untagged
@@ -525,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 590708801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.654, y: 0.576, z: 0}
+  m_LocalPosition: {x: -1.544, y: 0.446, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -550,6 +551,7 @@ MonoBehaviour:
   speed: 2
   player: {fileID: 1533751252}
   attackDelay: 1
+  knockback: 2
 --- !u!50 &590708805
 Rigidbody2D:
   serializedVersion: 5
@@ -576,7 +578,53 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!61 &590708806
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590708801}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.22}
+    newSize: {x: 0.24, y: 0.22}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.15, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1212,8 @@ MonoBehaviour:
   speed: 2
   acceleration: 10
   deceleration: 5
+  invincibilityTime: 0.5
+  flashInterval: 0.1
 --- !u!61 &1533751254
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,13 +16,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
 
+    public float invincibilityTime = 1.5f;
+    public float flashInterval = 0.03f;
+
+    private bool isInvincible = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void Update() //usato per aggiornare la logica che non dipende dalla fisica
     {
         // Leggi input
         movementInput = Vector2.zero;
@@ -52,10 +58,10 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = player_left_still;
         }
 
-            movementInput = movementInput.normalized; // direzione
+        movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
     }
 
-    void FixedUpdate()
+    void FixedUpdate() //usato per la fisica
     {
         Vector2 targetVelocity = movementInput * speed;
 
@@ -68,5 +74,30 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity -= rb.linearVelocity * deceleration * Time.fixedDeltaTime;
         }
+    }
+
+    public void TakeDamage()
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(Flash()); //per farlo lampeggiare quando prende danno
+        }
+    }
+
+    IEnumerator Flash()
+    {
+        isInvincible = true;
+
+        float timer = 0f;
+
+        while (timer < invincibilityTime)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(flashInterval);
+            timer += flashInterval;
+        }
+
+        spriteRenderer.enabled = true;
+        isInvincible = false;
     }
 }
