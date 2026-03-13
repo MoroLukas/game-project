@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_Shooting
   bulletPoint: {fileID: 1141803103}
-  bulletPrefab: {fileID: 6185081183619354316, guid: 9ad29cd1c8566aa4692af77746f0284e, type: 3}
+  bulletPrefab: {fileID: 5375138253507857874, guid: 9ad29cd1c8566aa4692af77746f0284e, type: 3}
 --- !u!1 &958512363
 GameObject:
   m_ObjectHideFlags: 0
