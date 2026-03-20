@@ -6,9 +6,10 @@ public class SlimeScript : MonoBehaviour
     public Sprite slime_left_walk;
     public Sprite slime_right_still;
     public Sprite slime_right_walk;
+
     private SpriteRenderer spriteRenderer;
 
-    public float speed = 5f;
+    public float speed = 2f;
     public Transform player;
     public float attackDelay = 1f; // secondi
 
@@ -16,9 +17,7 @@ public class SlimeScript : MonoBehaviour
     private float timerAttack;
     private float timerSprite;
 
-
     public float knockback = 4f;
-
 
     void Start()
     {
@@ -31,7 +30,7 @@ public class SlimeScript : MonoBehaviour
         timerAttack += Time.deltaTime;
         timerSprite += Time.deltaTime;
 
-        if (timerSprite >= 0.25)
+        if (timerSprite >= 0.25f)
         {
             if (spriteRenderer.sprite == slime_left_still)
             {
@@ -49,6 +48,7 @@ public class SlimeScript : MonoBehaviour
             {
                 spriteRenderer.sprite = slime_right_walk;
             }
+
             timerSprite = 0;
         }
 
@@ -78,5 +78,26 @@ public class SlimeScript : MonoBehaviour
         }
 
         rb.linearVelocity = direction * speed;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform == player)
+        {
+            Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+            Vector2 direction = (player.position - transform.position).normalized;
+
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.AddForce(direction * knockback, ForceMode2D.Impulse);
+            rb.AddForce(-direction * knockback / 2, ForceMode2D.Impulse);
+
+            timerAttack = 0;
+
+            PlayerMovement p = collision.gameObject.GetComponent<PlayerMovement>();
+            if (p != null)
+            {
+                p.TakeDamage();
+            }
+        }
     }
 }
