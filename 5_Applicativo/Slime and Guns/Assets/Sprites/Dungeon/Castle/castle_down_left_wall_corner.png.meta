@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -103,11 +103,11 @@ TextureImporter:
       name: castle_down_left_wall_corner_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 11
-        width: 9
-        height: 9
-      alignment: 0
+        x: 10
+        y: 10
+        width: 10
+        height: 10
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 03ae5ac2848d18340ab5ace2c712cf94
     internalID: 0
     vertices: []
     indices: 
