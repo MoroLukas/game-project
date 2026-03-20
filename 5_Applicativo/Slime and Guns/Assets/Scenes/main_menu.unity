@@ -1484,8 +1484,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1657,8 +1657,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SAVE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1794,8 +1794,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: HIGH
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2560,13 +2560,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 81eabd5e2a6f22b45bc8a6112ce645e6, type: 3}
+    m_Font: {fileID: 12800000, guid: cef24ab5c5fd23f4b9da1e7dc4e5d1a7, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2881,7 +2881,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1927373653}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Graphics, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 0
@@ -3745,8 +3745,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Setting
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3938,8 +3938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5711cd773599a2442a7b28e5623b9743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionMenu
-  Mixer: {fileID: 24100000, guid: 98fe0c7f977f3184b8b9dbafb6a20820, type: 2}
-  AudioSource: {fileID: 1927373652}
+  Mixer: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!1 &1793874264
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,8 +4181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d5e572de1a717f541bb0e8fd4a0a3216, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: d5e572de1a717f541bb0e8fd4a0a3216, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4856,7 +4856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1927373647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58602b3b6d5a1ef45bb92b2e784c638a, type: 3}
+  m_Script: {fileID: 11500000, guid: c374e40dd9cda9847b1251c20fb45da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Graphics
   ResDropDown: {fileID: 1799387521}
@@ -5146,7 +5146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2055307501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 595d0e5f75bf40742ae483c3661e3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6963f70f133ce5b43978843c3198b520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
 --- !u!1 &2062080949
@@ -5437,8 +5437,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 09b36b614c4c3374f8db5e3b726b15d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
