@@ -4160,7 +4160,7 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &651832363
 Rigidbody2D:
   serializedVersion: 5
@@ -4688,7 +4688,7 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &1053194134
 Rigidbody2D:
   serializedVersion: 5
@@ -5750,8 +5750,8 @@ Transform:
   m_GameObject: {fileID: 1399347246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.21, z: 0}
-  m_LocalScale: {x: 1.96, y: 1.9474, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5991,7 +5991,7 @@ GameObject:
   - component: {fileID: 1574900489}
   - component: {fileID: 1574900488}
   - component: {fileID: 1574900487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8905,7 +8905,7 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &1747663977
 Rigidbody2D:
   serializedVersion: 5
@@ -9397,7 +9397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 1117869547}
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 0, z: 0}
   smoothSpeed: 0.125
 --- !u!114 &2041336944
 MonoBehaviour:

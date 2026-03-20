@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SlimeScript : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class SlimeScript : MonoBehaviour
 
     public float knockback = 4f;
 
-    public float wallCheckDistance = 0.5f;
+    public float wallCheckDistance = 1f;
     public LayerMask wallLayer;
 
     void Start()
@@ -69,36 +69,34 @@ public class SlimeScript : MonoBehaviour
     {
         Vector2 direction = (player.position - transform.position).normalized;
 
-        // Controllo muro davanti
+        // Controllo se c'è un muro davanti
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, wallCheckDistance, wallLayer);
 
         if (hit.collider != null)
         {
-            // Se c'� un muro, prova a deviare (destra o sinistra)
-            Vector2 right = new Vector2(direction.y, -direction.x);
-            Vector2 left = new Vector2(-direction.y, direction.x);
+            Vector2 dirX = new Vector2(direction.x, 0);
+            Vector2 dirY = new Vector2(0, direction.y);
 
-            RaycastHit2D hitRight = Physics2D.Raycast(transform.position, right, wallCheckDistance, wallLayer);
-            RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, left, wallCheckDistance, wallLayer);
+            bool blockedX = Physics2D.Raycast(transform.position, dirX, wallCheckDistance, wallLayer);
+            bool blockedY = Physics2D.Raycast(transform.position, dirY, wallCheckDistance, wallLayer);
 
-            if (hitRight.collider == null)
+            if (!blockedX)
             {
-                direction = right;
+                direction = dirX;
             }
-            else if (hitLeft.collider == null)
+            else if (!blockedY)
             {
-                direction = left;
+                direction = dirY;
             }
-            else
-            {
-                direction = -direction; // torna indietro
-            }
+            
         }
+
+        direction = direction.normalized;
 
         // Sprite
         if (direction.x < 0)
             spriteRenderer.sprite = slime_left_still;
-        else
+        else if (direction.x > 0)
             spriteRenderer.sprite = slime_right_still;
 
         rb.linearVelocity = direction * speed;
@@ -126,6 +124,7 @@ public class SlimeScript : MonoBehaviour
                 p.TakeDamage();
             }
         }
+
     }
 
 }
