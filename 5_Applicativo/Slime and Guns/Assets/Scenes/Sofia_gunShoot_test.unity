@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 882269655}
   - component: {fileID: 882269657}
   - component: {fileID: 882269658}
+  - component: {fileID: 882269659}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -265,15 +266,42 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882269654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96e6c89700a2e4f4bbf8712487a23c65, type: 3}
+  m_Script: {fileID: 11500000, guid: ed886d84c916b5a44918969cd83ea47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
   maxHits: 3
-  deathEffect: {fileID: 684311497692874555, guid: 3859490abe249c24e8a4862d88bdd590, type: 3}
-  SmallStainPrefab: {fileID: 6221919859579757471, guid: 80ce272018407f84ab94f7b7e9dd23f0, type: 3}
-  StainPrefab: {fileID: 4767074255373760562, guid: 43f4f1a61f2f15a4bb396e9244534dfa, type: 3}
+  deathEffect: {fileID: 5669521527485158946, guid: 072cd79339b22b448b6db49cb67fb294, type: 3}
+  SmallStainPrefab: {fileID: 2642465368822093592, guid: 85b8090bccaea664b9120de6dbe8158b, type: 3}
+  StainPrefab: {fileID: 5102488830176742349, guid: 512a29af67d704b4e826a7697bd5276b, type: 3}
+--- !u!50 &882269659
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882269654}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &886995558
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,9 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1f4dfe080fd44438ec8d0e17f2ba6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun_Movement
-  bulletPoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  playerTransform: {fileID: 0}
 --- !u!1 &900906746
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,17 +443,17 @@ SpriteRenderer:
 --- !u!114 &900906749
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6500045844057538887, guid: 0859316b36f4ca8448d09ab5615b9b0b, type: 3}
-  m_PrefabInstance: {fileID: 3490582128676413159}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900906746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1f4dfe080fd44438ec8d0e17f2ba6d, type: 3}
+  m_Script: {fileID: 11500000, guid: a8fb46f12eb53db4fa94cec8ff25d8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun_Movement
   bulletPoint: {fileID: 1141803103}
-  bulletPrefab: {fileID: 5375138253507857874, guid: 9ad29cd1c8566aa4692af77746f0284e, type: 3}
+  bulletPrefab: {fileID: 745742433570458228, guid: cd103c2e2f876b34599f1eaf0939e1fd, type: 3}
   playerTransform: {fileID: 958512368}
 --- !u!1 &958512363
 GameObject:
@@ -443,6 +468,7 @@ GameObject:
   - component: {fileID: 958512365}
   - component: {fileID: 958512364}
   - component: {fileID: 958512369}
+  - component: {fileID: 958512370}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -608,6 +634,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b240d92a1fd05dc4fb7da9f545886c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &958512370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958512363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499a357c86353ff4d9c090ccb0e51e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player_left_still: {fileID: 2192332363164228162, guid: d594ef3f2c6b0104eb66ca981f190f5f, type: 3}
