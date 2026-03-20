@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
 
-    public float invincibilityTime = 1.5f;
-    public float flashInterval = 0.03f;
+    public float invincibilityTime = 1f;
+    public float flashInterval = 0.05f;
 
     private bool isInvincible = false;
 

@@ -8778,8 +8778,8 @@ MonoBehaviour:
   speed: 2
   acceleration: 10
   deceleration: 5
-  invincibilityTime: 1.5
-  flashInterval: 0.03
+  invincibilityTime: 1
+  flashInterval: 0.05
 --- !u!212 &1538349951
 SpriteRenderer:
   serializedVersion: 2
@@ -9190,7 +9190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2011704885
 RectTransform:
   m_ObjectHideFlags: 0
