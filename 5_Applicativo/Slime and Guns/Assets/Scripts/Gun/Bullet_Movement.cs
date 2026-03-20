@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class testing_enemy : MonoBehaviour
+public class Bullet_Movement : MonoBehaviour
 {
     public float speed = 5f;
     public GameObject ColorPrefab;
