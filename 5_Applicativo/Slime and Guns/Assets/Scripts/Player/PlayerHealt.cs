@@ -8,7 +8,7 @@ public class LifeSystem : MonoBehaviour
     public Sprite emptyHeart;
     public Sprite halfHeart;
 
-    public int maxLives = 6;
+    public int maxLives = 5;
     private int currentLives;
 
     void Start()
