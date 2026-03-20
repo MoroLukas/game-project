@@ -18,6 +18,9 @@ public class SlimeScript : MonoBehaviour
 
     public float knockback = 4f;
 
+    public float wallCheckDistance = 0.5f;
+    public LayerMask wallLayer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,14 +68,39 @@ public class SlimeScript : MonoBehaviour
     void Attack()
     {
         Vector2 direction = (player.position - transform.position).normalized;
+
+        // Controllo muro davanti
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, wallCheckDistance, wallLayer);
+
+        if (hit.collider != null)
+        {
+            // Se c'è un muro, prova a deviare (destra o sinistra)
+            Vector2 right = new Vector2(direction.y, -direction.x);
+            Vector2 left = new Vector2(-direction.y, direction.x);
+
+            RaycastHit2D hitRight = Physics2D.Raycast(transform.position, right, wallCheckDistance, wallLayer);
+            RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, left, wallCheckDistance, wallLayer);
+
+            if (hitRight.collider == null)
+            {
+                direction = right;
+            }
+            else if (hitLeft.collider == null)
+            {
+                direction = left;
+            }
+            else
+            {
+                direction = -direction; // torna indietro
+            }
+        }
+
+        // Sprite
         if (direction.x < 0)
-        {
             spriteRenderer.sprite = slime_left_still;
-        }
         else
-        {
             spriteRenderer.sprite = slime_right_still;
-        }
+
         rb.linearVelocity = direction * speed;
     }
 
