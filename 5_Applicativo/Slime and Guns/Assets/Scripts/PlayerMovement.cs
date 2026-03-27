@@ -25,6 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isInvincible = false;
 
+
+    //DASH variables
+    public float dashSpeed = 10f;
+    public float dashDuration = 0.15f;
+    public float dashCooldown = 1.0f;
+
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private float dashCooldownTimer = 0f;
+    private Vector2 dashDirection;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,10 +84,36 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
+
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero)
+        {
+            isDashing = true;
+            dashTimer = dashDuration;
+            dashCooldownTimer = dashCooldown;
+            dashDirection = movementInput; // direzione del dash
+        }
+
+        if (dashCooldownTimer > 0f)
+        {
+            dashCooldownTimer -= Time.deltaTime;
+        }
+
     }
 
     void FixedUpdate() //usato per la fisica
     {
+        if (isDashing)//per dashing
+        {
+            rb.linearVelocity = dashDirection * dashSpeed;
+            dashTimer -= Time.fixedDeltaTime;
+
+            if (dashTimer <= 0f)
+                isDashing = false;
+
+            return;
+        }
+
         Vector2 targetVelocity = movementInput * speed;
 
 
