@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-using Transform = UnityEngine.RuleTile.TilingRuleOutput.Transform;
 
 public class Gun_Movement : MonoBehaviour
 {
+    public Transform bulletPoint;
+    public GameObject bulletPrefab;
+
+    bool canFire = true;
+    float waitingTime = 0.5f;
+    float timer;
+
     public Transform playerTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +42,25 @@ public class Gun_Movement : MonoBehaviour
 
         transform.localScale = scale;
 
-        
+
+
+        if (Mouse.current.leftButton.wasPressedThisFrame && canFire)
+        {
+            Instantiate(bulletPrefab, bulletPoint.position, Quaternion.identity);
+            canFire = false;
+        }
+
+        if (!canFire)
+        {
+            timer = Time.time;
+
+            if (timer > waitingTime)
+            {
+                canFire = true;
+                timer = 0;
+            }
+        }
+
+
     }
 }

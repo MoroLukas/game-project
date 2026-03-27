@@ -21,6 +21,15 @@ public class SlimeScript : MonoBehaviour
     public float wallCheckDistance = 0.5f;
     public LayerMask wallLayer;
 
+    public int maxHits = 3;
+    private int currentHits = 0;
+
+    public GameObject deathEffect;
+    public GameObject SmallStainPrefab;
+    public GameObject StainPrefab;
+
+    public Transform stainPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -118,6 +127,27 @@ public class SlimeScript : MonoBehaviour
 
             PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>(); // ← cambiato
             ph?.TakeDamage(1);
+        }
+    }
+
+    public void TakeHit()
+    {
+        currentHits++;
+
+        if (currentHits == 1)
+        {
+            Instantiate(SmallStainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
+        }
+        else if (currentHits == 2)
+        {
+            Instantiate(StainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
+        }
+        else if (currentHits >= maxHits)
+        {
+            if (deathEffect != null)
+                Instantiate(deathEffect, stainPoint.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 

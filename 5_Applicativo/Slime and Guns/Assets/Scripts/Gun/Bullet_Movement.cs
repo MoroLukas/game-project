@@ -1,49 +1,63 @@
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class Bullet_Movement : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public float speed = 10f;
     public GameObject ColorPrefab;
 
-    public float posX;
-    public float posY;
+    private Rigidbody2D rb;
+    private bool enemyHit = false;
 
-    private bool targetSet = false;
-    Vector3 mousePos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!targetSet)
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos.z = 0;
+        Vector2 direction = (mousePos - transform.position).normalized;
+
+        rb.linearVelocity = direction * speed;
+
+        // Ignora il player all'istanziazione per evitare confilitto
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            mousePos.z = 0;
-            targetSet = true;
-        }else {
-            Vector3 direction = mousePos - transform.position;
-
-            if (direction.magnitude < 0.1f)
-            {
-                Destroy(gameObject);
-                targetSet = false;
-                return;
-            }
-
-            posX = direction.x;
-            posY = direction.y;
-
-            rb.linearVelocity = new Vector2(posX, posY).normalized * 5f;
+            Physics2D.IgnoreCollision(
+                GetComponent<Collider2D>(),
+                player.GetComponent<Collider2D>()
+            );
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Quando "colpisce" se stesso
+        if (collision.CompareTag("Player"))
+            return;
+
+        // Se colpisce un nemico
+        if (collision.CompareTag("enemy"))
+        {
+            enemyHit = true;
+            collision.GetComponent<SlimeScript>().TakeHit();
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Se colpisce un muro 
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDestroy()
     {
-        Instantiate(ColorPrefab, transform.position, Quaternion.identity);
+        // Se NON ha colpito un nemico → crea la macchia
+        if (!enemyHit)
+        {
+            Instantiate(ColorPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
