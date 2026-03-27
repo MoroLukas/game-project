@@ -23,12 +23,13 @@ public class Gun_Movement : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePos.z = 0;
 
-        Vector3 direction = mousePos - transform.position;
+        Vector3 direction = mousePos - transform.position; //impostazione della direzione verso il mouse
         
         
 
         Vector3 scale = Vector3.one;
 
+        //sistemazione della dirazione della sprite
         if(direction.x > 0)
         {
             scale.x = -1f;
@@ -43,14 +44,14 @@ public class Gun_Movement : MonoBehaviour
         transform.localScale = scale;
 
 
-
+        //istanziazione del proiettile
         if (Mouse.current.leftButton.wasPressedThisFrame && canFire)
         {
             Instantiate(bulletPrefab, bulletPoint.position, Quaternion.identity);
             canFire = false;
         }
 
-        if (!canFire)
+        if (!canFire)//tempo di attesa per sparare
         {
             timer = Time.time;
 

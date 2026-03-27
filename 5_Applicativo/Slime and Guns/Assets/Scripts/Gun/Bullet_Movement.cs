@@ -54,7 +54,7 @@ public class Bullet_Movement : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Se NON ha colpito un nemico → crea la macchia
+        // Solamente se non ha colpito un nemico
         if (!enemyHit)
         {
             Instantiate(ColorPrefab, transform.position, Quaternion.identity);
