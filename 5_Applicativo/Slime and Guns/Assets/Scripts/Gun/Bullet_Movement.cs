@@ -18,6 +18,16 @@ public class Bullet_Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            Collider2D playerCol = player.GetComponent<Collider2D>();
+            Collider2D bulletCol = GetComponent<Collider2D>();
+
+            if (playerCol != null && bulletCol != null)
+                Physics2D.IgnoreCollision(bulletCol, playerCol);
+        }
     }
 
     void Update()
@@ -26,21 +36,20 @@ public class Bullet_Movement : MonoBehaviour
         {
             Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+            worldPos.z = 0;
+
             Vector2 origin = transform.position;
             Vector2 direction = (worldPos - transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, 100f);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, 100f);
 
-            if (hit.collider != null)
+            foreach (RaycastHit2D hit in hits)
             {
-                targetPoint = hit.point;
-                enemyhit = true;
-            }
-            else
-            {
-                targetPoint = worldPos;
-
-                enemyhit = false;
+                if (!hit.collider.CompareTag("Player"))
+                {
+                    targetPoint = hit.point;
+                    break;
+                }
             }
 
             targetSet = true;
@@ -63,6 +72,22 @@ public class Bullet_Movement : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("enemy"))
+        {
+            enemyhit = true;
+            collision.GetComponent<SlimeScript>().TakeHit();
+            Destroy(gameObject);
+        }
+        else
+        {
+            
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDestroy()
     {
         if (!enemyhit)
