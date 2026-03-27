@@ -4,7 +4,7 @@ public class CameraFollow2D : MonoBehaviour
 {
     public Transform target;         // Il personaggio da seguire
     public Vector3 offset;           // Spostamento rispetto al personaggio
-    public float smoothSpeed = 0.125f; 
+    public float smoothSpeed = 1f; 
 
     void LateUpdate()
     {
