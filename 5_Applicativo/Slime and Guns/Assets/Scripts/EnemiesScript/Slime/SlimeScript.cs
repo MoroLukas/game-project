@@ -142,11 +142,11 @@ public class SlimeScript : MonoBehaviour
 
         if (currentHits == 1)
         {
-            Instantiate(SmallStainPrefab, stainPoint.position, Quaternion.identity);
+            Instantiate(SmallStainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
         }
         else if (currentHits == 2)
         {
-            Instantiate(StainPrefab, stainPoint.position, Quaternion.identity);
+            Instantiate(StainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
         }
         else if (currentHits >= maxHits)
         {

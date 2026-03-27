@@ -21,7 +21,7 @@ public class Bullet_Movement : MonoBehaviour
 
         rb.linearVelocity = direction * speed;
 
-        // Ignora il player (da migliorare)
+        // Ignora il player all'istanziazione per evitare confilitto
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -34,6 +34,10 @@ public class Bullet_Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Quando "colpisce" se stesso
+        if (collision.CompareTag("Player"))
+            return;
+
         // Se colpisce un nemico
         if (collision.CompareTag("enemy"))
         {
