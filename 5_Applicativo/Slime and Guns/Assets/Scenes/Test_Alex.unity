@@ -1680,10 +1680,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player_left_still: {fileID: 2192332363164228162, guid: d594ef3f2c6b0104eb66ca981f190f5f, type: 3}
   player_left_walk: {fileID: -5409457797693382528, guid: d9cdb6858ec2bd44496ee9ab605fd886, type: 3}
+  player_right_still: {fileID: 0}
+  player_right_walk: {fileID: 0}
   change_sprite_timer: 0
   speed: 2
   acceleration: 10
   deceleration: 5
+  invincibilityTime: 1
+  flashInterval: 0.05
+  dashSpeed: 10
+  dashDuration: 0.15
+  dashCooldown: 1
 --- !u!212 &1117869551
 SpriteRenderer:
   serializedVersion: 2
@@ -1887,7 +1894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1306836484}
-  - component: {fileID: 1306836483}
+  - component: {fileID: 1306836485}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -1895,26 +1902,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1306836483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306836482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b701080cd4b06c74fa0392a662e51269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  startingRoom: {fileID: 5000335120699548243, guid: f0524fb18871d03468ae3c6cb6119cb5, type: 3}
-  otherRooms:
-  - {fileID: 9145496810177262325, guid: 1778004c8c84c184cae2785d60028ca7, type: 3}
-  - {fileID: 3119076988356846509, guid: 2908b19fc0671174798c5bf769d0392a, type: 3}
-  player: {fileID: 1117869546}
-  gridTransform: {fileID: 1162459695}
-  gridSize: {x: 150, y: 150}
-  maxAttempts: 100
 --- !u!4 &1306836484
 Transform:
   m_ObjectHideFlags: 0
@@ -1930,6 +1917,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1306836485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306836482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0894bcb42cd8b942a7d7b16f04b4b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
+  grid: {fileID: 1162459694}
+  startingRoom: {fileID: 4339610764274450832, guid: d6b82db21a803b44f9b3f34361e6ce2a, type: 3}
+  roomPrefabs:
+  - {fileID: 4229673766934858685, guid: 661cfd33daf30534fb63b3ef7c24c4fb, type: 3}
+  - {fileID: 8028727237439359657, guid: 30f702b6e1ba3bd4eab2c18ec9f23fef, type: 3}
+  corridorHorizontal: {fileID: 867412783116190000, guid: 0050f318bfe1eb642946b09ec38fd2e6, type: 3}
+  corridorVertical: {fileID: 6495135066669860869, guid: 4810e9c06acda424da3d7b2cab708076, type: 3}
+  roomCount: 10
 --- !u!1 &1399347246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,90 +2028,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1539270117
-GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1539270119}
-  - component: {fileID: 1539270118}
-  m_Layer: 0
-  m_Name: Global Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1539270118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539270117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 4
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
---- !u!4 &1539270119
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539270117}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633424410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653854494}
-  - component: {fileID: 1653854493}
+  - component: {fileID: 1653854495}
   m_Layer: 0
   m_Name: Gamemanager
   m_TagString: Untagged
@@ -2259,20 +2183,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1653854493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653854492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022cd646f36fd1643948d386cfc3ff9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerHealth: {fileID: 0}
-  gameOverScreen: {fileID: 606529863}
 --- !u!4 &1653854494
 Transform:
   m_ObjectHideFlags: 0
@@ -2288,6 +2198,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1653854495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653854492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022cd646f36fd1643948d386cfc3ff9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  playerHealth: {fileID: 1117869552}
+  GameOverUI: {fileID: 0}
+  PauseMenuUI: {fileID: 0}
 --- !u!1 &1747663974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2708,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 2.53
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2864,7 +2789,6 @@ SceneRoots:
   - {fileID: 1399347248}
   - {fileID: 1653854494}
   - {fileID: 1747663979}
-  - {fileID: 1539270119}
   - {fileID: 651832365}
   - {fileID: 497510183}
   - {fileID: 1162459695}
