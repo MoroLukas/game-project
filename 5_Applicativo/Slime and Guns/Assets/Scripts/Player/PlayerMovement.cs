@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public float change_sprite_timer = 0;
     private bool facingRight = true;
+    private bool isMoving;
 
     public float speed = 2f;
     public float acceleration = 10f;
@@ -52,39 +54,7 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.aKey.isPressed) movementInput.x = -1;
         if (Keyboard.current.dKey.isPressed) movementInput.x = 1;
 
-        if (movementInput.x > 0) facingRight = true;
-        if (movementInput.x < 0) facingRight = false;
-
-        if (movementInput != Vector2.zero)
-        {
-            if (change_sprite_timer >= (30 / speed))
-            {
-                if (facingRight)
-                {
-                    spriteRenderer.sprite = (spriteRenderer.sprite == player_right_still)
-                        ? player_right_walk
-                        : player_right_still;
-
-                }
-                else
-                {
-                    spriteRenderer.sprite = (spriteRenderer.sprite == player_left_still)
-                        ? player_left_walk
-                        : player_left_still;
-
-                }
-
-                change_sprite_timer = 0;
-            }
-            change_sprite_timer++;
-        }
-        else
-        {
-            spriteRenderer.sprite = facingRight ? player_right_still : player_left_still;
-        }
-
-        movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
-
+        isMoving = movementInput != Vector2.zero;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//utilizzo del mouse per cambiare sprite
         mousePos.z = 0;
@@ -96,16 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 scale = Vector3.one;
 
-
-        if (facingRight){ //cambio sprite a seconda del mouse 
-            spriteRenderer.sprite = player_right_still;
-        }
-        else
-        {
-            spriteRenderer.sprite = player_left_still;
-        }
-
-
+        movement();
+        
+        //dashing movement
         if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero) //contrlla che sia schiacciato lo spazio
         {
             isDashing = true;
@@ -170,5 +133,39 @@ public class PlayerMovement : MonoBehaviour
 
         spriteRenderer.enabled = true;
         isInvincible = false;
+    }
+
+    public void movement() {
+
+        if (isMoving)
+        {
+            if (change_sprite_timer >= (30 / speed))
+            {
+                if (facingRight)
+                {
+                    spriteRenderer.sprite = (spriteRenderer.sprite == player_right_still)
+                        ? player_right_walk
+                        : player_right_still;
+
+                }
+                else
+                {
+                    spriteRenderer.sprite = (spriteRenderer.sprite == player_left_still)
+                        ? player_left_walk
+                        : player_left_still;
+
+                }
+
+                change_sprite_timer = 0;
+            }
+            change_sprite_timer++;
+        }
+        else
+        {
+            spriteRenderer.sprite = facingRight ? player_right_still : player_left_still;
+        }
+
+        movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
+    
     }
 }

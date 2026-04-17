@@ -44,6 +44,17 @@ public class SlimeEnemy : MonoBehaviour
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+
+        if (p != null)
+        {
+            player = p.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found! Make sure it has the 'Player' tag.");
+        }
     }
 
     void Update()
