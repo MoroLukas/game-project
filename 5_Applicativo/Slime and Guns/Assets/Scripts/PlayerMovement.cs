@@ -13,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float change_sprite_timer = 0;
     private bool facingRight = true;
 
-    public float speed = 2f;           
-    public float acceleration = 10f;   
-    public float deceleration = 6f; 
+    public float speed = 2f;
+    public float acceleration = 10f;
+    public float deceleration = 6f;
 
     private Rigidbody2D rb;
     private Vector2 movementInput = Vector2.zero;
@@ -86,7 +86,27 @@ public class PlayerMovement : MonoBehaviour
         movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
 
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//utilizzo del mouse per cambiare sprite
+        mousePos.z = 0;
+
+        Vector3 direction = mousePos - transform.position;
+
+        if (direction.x > 0) facingRight = true;//cambio posizione seconda del mouse
+        if (direction.x < 0) facingRight = false;
+
+        Vector3 scale = Vector3.one;
+
+
+        if (facingRight){ //cambio sprite a seconda del mouse 
+            spriteRenderer.sprite = player_right_still;
+        }
+        else
+        {
+            spriteRenderer.sprite = player_left_still;
+        }
+
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero) //contrlla che sia schiacciato lo spazio
         {
             isDashing = true;
             dashTimer = dashDuration;
