@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = facingRight ? player_right_still : player_left_still;
         }
 
-        movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
+        movementInput = movementInput.normalized; // normalizza la velocitÃ , cosÃ¬ non va piÃ¹ veloce in diagonale
 
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//utilizzo del mouse per cambiare sprite

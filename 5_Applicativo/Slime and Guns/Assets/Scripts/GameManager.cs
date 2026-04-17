@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
         playerHealth.OnDeath += HandleGameOver;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
     void OnDestroy()
     {
         playerHealth.OnDeath -= HandleGameOver;
@@ -38,8 +46,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //Ricarica la scena attuale per reettare tutto
-        //SceneManager.LoadScene("TestLukas");
     }
 
     public void ResumeRun()
@@ -53,6 +59,6 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TestLukas");
+        SceneManager.LoadScene("MainMenu");
     }
 }
