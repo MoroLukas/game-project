@@ -7768,7 +7768,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerHealth: {fileID: 1538349953}
-  gameOverScreen: {fileID: 0}
+  GameOverUI: {fileID: 0}
+  PauseMenuUI: {fileID: 0}
 --- !u!4 &1102743090
 Transform:
   m_ObjectHideFlags: 0
@@ -8119,7 +8120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1538349947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11b875be029e9e428c920639e87b537, type: 3}
+  m_Script: {fileID: 11500000, guid: b04b6483cdf10fd4faf31e428a781974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   player_left_still: {fileID: 2192332363164228162, guid: d594ef3f2c6b0104eb66ca981f190f5f, type: 3}
@@ -8129,12 +8130,12 @@ MonoBehaviour:
   change_sprite_timer: 0
   speed: 2
   acceleration: 10
-  deceleration: 5
+  deceleration: 6
   invincibilityTime: 1
   flashInterval: 0.05
-  dashSpeed: 12
+  dashSpeed: 10
   dashDuration: 0.15
-  dashCooldown: 0.5
+  dashCooldown: 1
 --- !u!212 &1538349951
 SpriteRenderer:
   serializedVersion: 2
@@ -8224,6 +8225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHP: 6
   currentHP: 3
+  invincibilityTime: 1
+  flashInterval: 0.05
 --- !u!1 &1794247856
 GameObject:
   m_ObjectHideFlags: 0
