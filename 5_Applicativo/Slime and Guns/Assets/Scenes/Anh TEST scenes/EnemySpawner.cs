@@ -1,5 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+
+/* this script was made following this tutorial "Unity Tutorial(2021) -Making an Enemy Spawner" and modified based on my necessity*/
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -22,4 +25,6 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
         StartCoroutine(spawnEnemy(interval, enemy));
     }
+
+
 }

@@ -64,12 +64,10 @@ public class PlayerMovement : MonoBehaviour
         if (direction.x > 0) facingRight = true;//cambio posizione seconda del mouse
         if (direction.x < 0) facingRight = false;
 
-        Vector3 scale = Vector3.one;
-
         movement();
         
-        //dashing movement
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero) //contrlla che sia schiacciato lo spazio
+        //dashing
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && dashCooldownTimer <= 0f && movementInput != Vector2.zero) //controlla l'input
         {
             isDashing = true;
             dashTimer = dashDuration;
@@ -165,7 +163,6 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = facingRight ? player_right_still : player_left_still;
         }
 
-        movementInput = movementInput.normalized; // normalizza la velocità, così non va più veloce in diagonale
-    
+        movementInput = movementInput.normalized; // normalizza la velocita, per andare piu veloce in diagonale
     }
 }
