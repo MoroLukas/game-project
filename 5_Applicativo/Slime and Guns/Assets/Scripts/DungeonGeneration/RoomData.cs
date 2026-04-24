@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RoomData : MonoBehaviour
 {
+    public Vector2 size; //larghezza e altezza della stanza
+
     public Transform doorUp;
     public Transform doorDown;
     public Transform doorLeft;

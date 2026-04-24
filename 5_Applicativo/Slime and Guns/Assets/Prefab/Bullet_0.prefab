@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: -8014955145327852134}
   - component: {fileID: 1880287383337313904}
   m_Layer: 0
-  m_Name: bullet_0
-  m_TagString: Untagged
+  m_Name: Bullet_0
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_Movement
   speed: 5
   ColorPrefab: {fileID: 8614287120748340889, guid: 0396247132746ee4bbab7fa6e6056e80, type: 3}
-  posX: 0
-  posY: 0
 --- !u!50 &-7443260288840103967
 Rigidbody2D:
   serializedVersion: 5

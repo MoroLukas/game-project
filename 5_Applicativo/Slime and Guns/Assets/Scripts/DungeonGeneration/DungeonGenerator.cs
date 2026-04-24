@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public Grid grid;
-
     public GameObject startingRoom;
     public GameObject[] roomPrefabs;
 
     public GameObject corridorHorizontal;
     public GameObject corridorVertical;
 
-    public int roomCount = 10;
+    public float padding = 0.4f; // spazio extra tra stanze (IN WORLD SPACE)
 
-    private HashSet<Vector2Int> used = new HashSet<Vector2Int>();
+    private GameObject currentRoom;
 
     void Start()
     {
@@ -22,42 +20,63 @@ public class DungeonGenerator : MonoBehaviour
 
     void Generate()
     {
-        Vector2Int current = Vector2Int.zero;
+        currentRoom = Instantiate(startingRoom, Vector3.zero, Quaternion.identity);
 
-        SpawnRoom(current, startingRoom);
-
-        for (int i = 0; i < roomCount; i++)
+        for (int i = 0; i < 10; i++)
         {
             Vector2Int dir = GetDir();
-            Vector2Int next = current + dir;
 
-            if (used.Contains(next))
+            GameObject prefab = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
+            GameObject newRoom = Instantiate(prefab);
+
+            if (!PlaceRoom(currentRoom, newRoom, dir))
+            {
+                Destroy(newRoom);
                 continue;
+            }
 
-            SpawnRoom(next, roomPrefabs[Random.Range(0, roomPrefabs.Length)]);
-            SpawnCorridor(current, next);
+            SpawnCorridor(currentRoom, newRoom);
 
-            current = next;
+            currentRoom = newRoom;
         }
     }
 
-    void SpawnRoom(Vector2Int cell, GameObject prefab)
+    bool PlaceRoom(GameObject a, GameObject b, Vector2Int dir)
     {
-        Vector3 pos = grid.CellToWorld(new Vector3Int(cell.x, cell.y, 0));
+        RoomData A = a.GetComponent<RoomData>();
+        RoomData B = b.GetComponent<RoomData>();
 
-        GameObject room = Instantiate(prefab, pos, Quaternion.identity);
+        Vector3 offset = Vector3.zero;
 
-        used.Add(cell);
+        float ax = A.size.x;
+        float ay = A.size.y;
+        float bx = B.size.x;
+        float by = B.size.y;
+
+        if (dir == Vector2Int.right)
+            offset = new Vector3((ax + bx) / 2f + padding, 0, 0);
+
+        if (dir == Vector2Int.left)
+            offset = new Vector3(-((ax + bx) / 2f + padding), 0, 0);
+
+        if (dir == Vector2Int.up)
+            offset = new Vector3(0, (ay + by) / 2f + padding, 0);
+
+        if (dir == Vector2Int.down)
+            offset = new Vector3(0, -((ay + by) / 2f + padding), 0);
+
+        b.transform.position = a.transform.position + offset;
+
+        return true;
     }
 
-    void SpawnCorridor(Vector2Int a, Vector2Int b)
+    void SpawnCorridor(GameObject a, GameObject b)
     {
-        Vector3 pa = grid.CellToWorld(new Vector3Int(a.x, a.y, 0));
-        Vector3 pb = grid.CellToWorld(new Vector3Int(b.x, b.y, 0));
+        Vector3 mid = (a.transform.position + b.transform.position) / 2f;
 
-        Vector3 mid = (pa + pb) / 2f;
+        Vector2 diff = b.transform.position - a.transform.position;
 
-        if (a.x != b.x)
+        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
             Instantiate(corridorHorizontal, mid, Quaternion.identity);
         else
             Instantiate(corridorVertical, mid, Quaternion.identity);
