@@ -3,36 +3,36 @@ using UnityEngine;
 public class SpawnerHealth : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField]
-    public int maxHealth = 10;
-
-    private int currentHealth;
-
+    public int maxHits = 3;
+    private int currentHits = 0;
     [Header("Effects")]
     public GameObject deathEffect;
+    public GameObject SmallStainPrefab;
+    public GameObject StainPrefab;
+    public Transform stainPoint;
 
-    void Start()
+
+
+
+    public void TakeHit()
     {
-        currentHealth = maxHealth;
-    }
+        currentHits++;
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
+        if (currentHits == 1)
         {
-            Die();
+            Instantiate(SmallStainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
+        }
+        else if (currentHits == 2)
+        {
+            Instantiate(StainPrefab, stainPoint.position, Quaternion.identity, stainPoint);
+        }
+        else if (currentHits >= maxHits)
+        {
+            if (deathEffect != null)
+                Instantiate(deathEffect, stainPoint.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 
-    void Die()
-    {
-        if (deathEffect != null)
-        {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-        }
-
-        Destroy(gameObject);
-    }
 }
