@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 
-public class Bullet_Movement : MonoBehaviour
+public class Bullet_Movement_for_anh : MonoBehaviour
 {
     public float speed = 10f;
     public GameObject ColorPrefab;
@@ -44,6 +44,17 @@ public class Bullet_Movement : MonoBehaviour
             enemyHit = true;
             collision.GetComponent<SlimeEnemy>().TakeHit();
             Destroy(gameObject);
+        }
+        else if (collision.CompareTag("spawner"))
+        {
+            SpawnerHealth spawner = collision.GetComponent<SpawnerHealth>();
+            if (spawner != null)
+            {
+                spawner.TakeHit();
+            }
+
+            Destroy(gameObject);
+            return;
         }
         else
         {
