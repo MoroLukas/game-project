@@ -42,7 +42,7 @@ public class Bullet_Movement : MonoBehaviour
         if (collision.CompareTag("enemy"))
         {
             enemyHit = true;
-            collision.GetComponent<SlimeEnemy>().TakeHit();
+            collision.GetComponent<SlimeScript>().TakeHit();
             Destroy(gameObject);
         }
         else
