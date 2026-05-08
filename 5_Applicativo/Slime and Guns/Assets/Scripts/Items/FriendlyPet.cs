@@ -7,7 +7,7 @@ public class FriendlyPet : MonoBehaviour
     public float fireRate = 2f; // tempo tra un colpo e l'altro
     private float fireCooldown = 0f;
 
-    public float detectionRadius = 5f;
+    public float detectionRadius = 2.5f;
     public LayerMask enemyLayer;
 
     private Transform targetEnemy;
@@ -16,17 +16,15 @@ public class FriendlyPet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Cerca un nemico nel raggio
+        // Cerca un nemico nel raggio di visione
         FindEnemy();
 
-        // Se c'è un nemico → ruota verso di lui e spara
+
         if (targetEnemy != null)
         {
-            RotateTowardsEnemy();
             Shoot();
         }
 
-        // Aggiorna cooldown
         if (fireCooldown > 0)
             fireCooldown -= Time.deltaTime;
     }
@@ -41,27 +39,13 @@ public class FriendlyPet : MonoBehaviour
             targetEnemy = null;
     }
 
-    void RotateTowardsEnemy()
-    {
-        Vector2 direction = targetEnemy.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-    }
 
     void Shoot()
     {
         if (fireCooldown <= 0f)
         {
-            Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            Instantiate(bulletPrefab, shootPoint.position, transform.rotation);
             fireCooldown = fireRate;
         }
-    }
-
-    // Per vedere il raggio in scena
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
