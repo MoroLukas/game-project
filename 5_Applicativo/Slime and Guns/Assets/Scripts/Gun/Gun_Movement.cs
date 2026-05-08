@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Gun_Movement : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Gun_Movement : MonoBehaviour
     public float distanceFromPlayer = 0.5f;
     Vector3 baseLocalPos;
 
+    public float gunScale = 2f;
+
+    Vector3 gunRepositioning = new Vector3(0.35f, 0, 0);
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,27 +30,27 @@ public class Gun_Movement : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        mousePos.z = 0;
+        mousePos.z = 0; 
 
         Vector3 direction = mousePos - transform.position;
 
         Vector3 scale = Vector3.one;
 
-        scale.y = 2f;
+        scale.y = gunScale;
 
         Vector3 targetPos;
 
         if (direction.x > 0)
         {
-            scale.x = -2f;
+            scale.x = - gunScale;
             transform.right = direction;
-            targetPos = baseLocalPos  + new Vector3(0.35f, 0, 0); ;
+            targetPos = baseLocalPos  + gunRepositioning;
 
         }
         else
         {
-            scale.x = 2f;
-            transform.right = -direction;
+            scale.x = gunScale;
+            transform.right = - direction;
             targetPos = baseLocalPos;
         }
 

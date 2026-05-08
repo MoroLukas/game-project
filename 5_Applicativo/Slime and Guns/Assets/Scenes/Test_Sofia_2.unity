@@ -7848,6 +7848,7 @@ MonoBehaviour:
   bulletPoint: {fileID: 82623782}
   bulletPrefab: {fileID: 6446508103524013668, guid: b9223d72f393fd541a4bd535673c9d2d, type: 3}
   distanceFromPlayer: 0.5
+  gunScale: 2
 --- !u!212 &1253135799
 SpriteRenderer:
   serializedVersion: 2
@@ -8249,7 +8250,7 @@ Transform:
   m_GameObject: {fileID: 1538349947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.43, y: 0.64, z: 0}
+  m_LocalPosition: {x: 3.29, y: 1.52, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8295,6 +8296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1778227636}
   - component: {fileID: 1778227637}
+  - component: {fileID: 1778227638}
   m_Layer: 0
   m_Name: friendlyPet_0
   m_TagString: Untagged
@@ -8377,6 +8379,25 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1778227638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778227635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e251ff9f010b95d40874d55ea69cf004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FriendlyPet
+  bulletPrefab: {fileID: 6446508103524013668, guid: 2642c4a029c358948a65d7210cc335b0, type: 3}
+  shootPoint: {fileID: 1362734562}
+  fireRate: 2
+  detectionRadius: 2.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1794247856
 GameObject:
   m_ObjectHideFlags: 0
