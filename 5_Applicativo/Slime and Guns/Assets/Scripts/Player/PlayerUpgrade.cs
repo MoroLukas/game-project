@@ -19,7 +19,11 @@ public class PlayerUpgrade : MonoBehaviour
         scale.y = initaialScale.y * 1.4f;
 
         PlayerMovement = GetComponent<PlayerMovement>();
-        PlayerMovement.speed -= 1f;
+
+        if (PlayerMovement.speed > 1)//serve a fere in modo che non rimanga mai immobile
+        {
+            PlayerMovement.speed -= 1f;
+        }
 
         transform.localScale = scale;
     }

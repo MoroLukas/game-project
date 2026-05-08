@@ -35,7 +35,7 @@ public class Bullet_Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Quando "colpisce" se stesso
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("bullet"))
             return;
 
         // Se colpisce un nemico
