@@ -4,27 +4,31 @@ using UnityEngine.UIElements.Experimental;
 
 /* this script was made following this tutorial "Unity Tutorial(2021) -Making an Enemy Spawner" and modified based on my necessity*/
 
+using System.Collections;
+using UnityEngine;
+
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject swarmerPrefab;
+    [SerializeField] private GameObject swarmerPrefab;
+    [SerializeField] private float swarmerInterval = 3.5f;
 
-    [SerializeField]
-    private float swarmerInterval = 3.5f;
+    private bool isSpawning = false;
 
-
-    void Start()
+    public void ActivateSpawner()
     {
-        StartCoroutine(spawnEnemy(swarmerInterval, swarmerPrefab));
-
+        if (!isSpawning)
+        {
+            isSpawning = true;
+            StartCoroutine(SpawnEnemy(swarmerInterval, swarmerPrefab));
+        }
     }
 
-    private IEnumerator spawnEnemy(float interval, GameObject enemy)
+    private IEnumerator SpawnEnemy(float interval, GameObject enemy)
     {
-        yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
-        StartCoroutine(spawnEnemy(interval, enemy));
+        while (true)
+        {
+            yield return new WaitForSeconds(interval);
+            Instantiate(enemy, transform.position, Quaternion.identity);
+        }
     }
-
-
 }
