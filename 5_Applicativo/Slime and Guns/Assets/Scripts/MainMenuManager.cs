@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     public void startGame()
     {
-        SceneManager.LoadScene("TestLukas");
+        SceneManager.LoadScene("Test_Alex");
     }
 
     public void endGame()

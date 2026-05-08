@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 317b33080ffd4694bb251ecd12189afa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Test_Alex.unity
     guid: a78bdd231ea8c3e4f9ed0b6886046a80
   - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 0
     path: Assets/Scenes/TestLukas.unity
     guid: 988dcc1896dc0e544882a5bfbc6e7e24
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Anh TEST scenes/TestAnh.unity
     guid: bacf73a101d79c54c8365a03c172482d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Anh TEST scenes/TestScene connect.unity
     guid: 7dd3e8a8a17c3eb4d94e10b384ea4931
   m_configObjects:

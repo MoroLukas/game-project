@@ -125,7 +125,7 @@ public class SlimeScript : MonoBehaviour
             rb.AddForce(-direction * knockback / 2, ForceMode2D.Impulse);
             timerAttack = 0;
 
-            PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>(); // ← cambiato
+            PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>(); 
             ph?.TakeDamage(1);
         }
     }

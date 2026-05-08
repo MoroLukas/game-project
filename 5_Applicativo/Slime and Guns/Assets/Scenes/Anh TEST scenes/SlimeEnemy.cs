@@ -31,6 +31,7 @@ public class SlimeEnemy : MonoBehaviour
     private float spriteTimer;
 
     private bool isDashing;
+    private bool isSliding;
     private float dashTimer;
 
     [Header("Combat")]
@@ -71,8 +72,7 @@ public class SlimeEnemy : MonoBehaviour
         attackTimer += Time.deltaTime;
         spriteTimer += Time.deltaTime;
 
-        // NAVMESH CHASE (only when not dashing)
-        if (!isDashing)
+        if (!isDashing && !isSliding)
         {
             agent.isStopped = false;
             agent.SetDestination(player.position);
@@ -80,7 +80,7 @@ public class SlimeEnemy : MonoBehaviour
 
         HandleSprite();
 
-        if (attackTimer >= attackDelay && !isDashing)
+        if (attackTimer >= attackDelay && !isDashing && !isSliding)
         {
             StartDash();
             attackTimer = 0f;
@@ -89,32 +89,65 @@ public class SlimeEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isDashing)
+        // movimeno
+        if (!isDashing && !isSliding)
         {
-            // sync NavMesh position to Rigidbody
             agent.nextPosition = rb.position;
+
+            Vector2 targetPos = agent.nextPosition;
+            Vector2 newPos = Vector2.MoveTowards(
+                rb.position,
+                targetPos,
+                agent.speed * Time.fixedDeltaTime
+            );
+
+            rb.MovePosition(newPos);
+            return;
         }
 
+        // slide
+        rb.linearVelocity *= 0.90f;
+
+        // quando è quasi fermo
+        if (rb.linearVelocity.magnitude < 0.20f)
+        {
+            rb.linearVelocity = Vector2.zero;
+
+            isDashing = false;
+            isSliding = false;
+
+            agent.Warp(transform.position);
+            agent.isStopped = false;
+
+            return;
+        }
+
+        // timer dash
         if (isDashing)
         {
-            rb.linearVelocity *= 0.95f;
-
             dashTimer -= Time.fixedDeltaTime;
+
             if (dashTimer <= 0f)
-                EndDash();
+            {
+                isDashing = false;
+                isSliding = true;
+            }
         }
     }
 
     void StartDash()
     {
+        agent.nextPosition = rb.position;
+
         Vector3 nextPos = agent.steeringTarget;
         Vector2 direction = (nextPos - transform.position).normalized;
 
-        // stop navmesh
         agent.isStopped = true;
         agent.ResetPath();
 
         isDashing = true;
+        isSliding = false;
+
         dashTimer = dashDuration;
 
         rb.linearVelocity = direction * dashForce;
@@ -123,36 +156,31 @@ public class SlimeEnemy : MonoBehaviour
             (direction.x < 0) ? slime_left_still : slime_right_still;
     }
 
-    void EndDash()
-    {
-        isDashing = false;
-        rb.linearVelocity = Vector2.zero;
-
-        agent.isStopped = false;
-    }
-
     void HandleSprite()
     {
-        if (spriteTimer < 0.25f) return;
+        Vector2 vel = rb.linearVelocity;
 
-        Vector2 vel = isDashing ? rb.linearVelocity : agent.velocity;
+        // fermo
+        if (vel.magnitude < 0.10f)
+        {
+            if (spriteRenderer.sprite == slime_left_walk)
+                spriteRenderer.sprite = slime_left_still;
+            else if (spriteRenderer.sprite == slime_right_walk)
+                spriteRenderer.sprite = slime_right_still;
 
+            return;
+        }
+
+        // movimento verso sinistra
         if (vel.x < 0)
         {
-            spriteRenderer.sprite =
-                (spriteRenderer.sprite == slime_left_still)
-                ? slime_left_walk
-                : slime_left_still;
+            spriteRenderer.sprite = slime_left_walk;
         }
+        // movimento verso destra
         else if (vel.x > 0)
         {
-            spriteRenderer.sprite =
-                (spriteRenderer.sprite == slime_right_still)
-                ? slime_right_walk
-                : slime_right_still;
+            spriteRenderer.sprite = slime_right_walk;
         }
-
-        spriteTimer = 0f;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

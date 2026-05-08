@@ -31,20 +31,20 @@ public class Gun_Movement : MonoBehaviour
 
         Vector3 scale = Vector3.one;
 
-        scale.y = 2f;
+        scale.y = 1f;
 
         Vector3 targetPos;
 
         if (direction.x > 0)
         {
-            scale.x = -2f;
+            scale.x = -1f;
             transform.right = direction;
-            targetPos = baseLocalPos  + new Vector3(0.35f, 0, 0); ;
+            targetPos = baseLocalPos  + new Vector3(0.2f, 0, 0); ;
 
         }
         else
         {
-            scale.x = 2f;
+            scale.x = 1f;
             transform.right = -direction;
             targetPos = baseLocalPos;
         }
